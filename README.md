@@ -10,7 +10,7 @@
 | family_furigana    | string     | null: false                    |
 | email              | string     | null: false                    |
 | nickname           | string     | null: false                    |
-| birth              | data       | null: false                    |
+| birth              | date       | null: false                    |
 | password           | string     | null: false                    |
 
 
@@ -56,7 +56,6 @@
 
 - belongs_to :user
 - belongs_to :item
-- has_one    :shipping address
 
 ## shipping_addresses テーブル
 
@@ -73,7 +72,7 @@
 ### Association
 
 - belongs_to :item
-- belongs_to :purchase
+
 
 ## comments テーブル
 | Column           | Type       | Options                        |
