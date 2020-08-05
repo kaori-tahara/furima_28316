@@ -24,14 +24,18 @@
 
 ## items テーブル
 
-| Column                | Type       | Options                       |
-| --------------------  | ---------- | ------------------------------|
-| picture               | text       | null: false                   |
-| name                  | string     | null: false                   |
-| text                  | text       | null: false                   |
-| price                 | integer    | null: false                   |
-| user                  | references | null: false, foreign_key: true|
-
+| Column                  | Type       |Options                      |
+| --------------------    | ---------- | -------------------------   |
+| picture                 | text       | null:false                  |
+| name                    | string     | null:false                  |
+| text                    | text       | null:false                  |
+| price                   | integer    | null:false                  |
+| user                    | references | null: false,foreign_key:true|
+| category                | references | null:false, foreign_key:true|
+| item_statue             | references | null:false, foreign_key:true|
+| shipping_charge         | references | null:false, foreign_key:true|
+| shipping_area           | references | null:false, foreign_key:true|
+| period_until_shipping   | references | null:false, foreign_key:true|
 
 ### Association
 
@@ -69,7 +73,7 @@
 ### Association
 
 - belongs_to :item
-- belongs_to :purchases
+- belongs_to :purchase
 
 ## comments テーブル
 | Column           | Type       | Options                        |
