@@ -17,32 +17,28 @@
 ### Association
 
 - has_many :items
-- has_one  :purchase
+- has_many :purchases
+- has_many :comments
 
 
 
 ## items テーブル
 
 | Column                | Type       | Options                       |
-| --------------------- | ---------- | ------------------------------|
+| --------------------  | ---------- | ------------------------------|
 | picture               | text       | null: false                   |
 | name                  | string     | null: false                   |
 | text                  | text       | null: false                   |
 | price                 | integer    | null: false                   |
 | user                  | references | null: false, foreign_key: true|
-| purchase              | references | null: false, foreign_key: true|
 
-#### 以下のitemはdbに保存しない
-category_id
-item_statue_id 
-shipping_charge_id
-shipping_area_id
-period_until_shipping_id 
 
 ### Association
 
 - belongs_to :user
 - has_one    :purchase
+- has_one    :shipping_address
+- has_many   :comments
 
 
 ## purchases テーブル
@@ -54,9 +50,9 @@ period_until_shipping_id
 
 ### Association
 
-- has_one    :shipping_address
 - belongs_to :user
 - belongs_to :item
+- has_one    :shipping address
 
 ## shipping_addresses テーブル
 
@@ -72,6 +68,15 @@ period_until_shipping_id
 
 ### Association
 
-- belongs_to :purchase
 - belongs_to :item
+- belongs_to :purchases
+
+
+#### 以下のitemはdbに保存しない
+category_id
+item_statue_id 
+shipping_charge_id
+shipping_area_id
+period_until_shipping_id 
+
 
