@@ -34,7 +34,7 @@
 | category                | references | null:false, foreign_key:true|
 | item_statue             | references | null:false, foreign_key:true|
 | shipping_charge         | references | null:false, foreign_key:true|
-| shipping_area           | references | null:false, foreign_key:true|
+| prefecture              | references | null:false, foreign_key:true|
 | period_until_shipping   | references | null:false, foreign_key:true|
 
 ### Association
@@ -63,7 +63,7 @@
 | Column        | Type       | Options                        |
 | ------------- | ---------- | ------------------------------ |
 | zip           | string     | null: false                    |
-| prefecture    | string     | null: false                    |
+| prefecture    | references | null: false, foreign_key: true |
 | city          | string     | null: false                    |
 | address       | string     | null: false                    |
 | building_name | string     | null: false                    |
@@ -93,7 +93,7 @@
 category_id
 item_statue_id 
 shipping_charge_id
-shipping_area_id
+prefecture_id
 period_until_shipping_id 
 
 
