@@ -71,6 +71,19 @@
 - belongs_to :item
 - belongs_to :purchases
 
+## comments テーブル
+| Column           | Type       | Options                        |
+| ---------------  | ---------- | ------------------------------ |
+| user             | references | null: false, foreign_key: true |
+| item             | references | null: false, foreign_key: true |
+| text             | text       | null: false                    |
+
+### Association
+
+- belongs_to :user
+- belongs_to :item
+
+
 
 #### 以下のitemはdbに保存しない
 category_id
