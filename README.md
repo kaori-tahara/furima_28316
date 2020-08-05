@@ -31,11 +31,11 @@
 | text                    | text       | null:false                  |
 | price                   | integer    | null:false                  |
 | user                    | references | null: false,foreign_key:true|
-| category                | references | null:false, foreign_key:true|
-| item_statue             | references | null:false, foreign_key:true|
-| shipping_charge         | references | null:false, foreign_key:true|
-| prefecture              | references | null:false, foreign_key:true|
-| period_until_shipping   | references | null:false, foreign_key:true|
+| category                | integer    | null:false                  |
+| item_statue             | integer    | null:false                  |
+| shipping_charge         | integer    | null:false                  |
+| prefecture              | integer    | null:false                  |
+| period_until_shipping   | integer    | null:false                  |
 
 ### Association
 
@@ -63,7 +63,7 @@
 | Column        | Type       | Options                        |
 | ------------- | ---------- | ------------------------------ |
 | zip           | string     | null: false                    |
-| prefecture    | references | null: false, foreign_key: true |
+| prefecture    | integer    | null: false                    |
 | city          | string     | null: false                    |
 | address       | string     | null: false                    |
 | building_name | string     | null: false                    |
