@@ -12,13 +12,14 @@ class UsersController < ApplicationController
      redirect_to root_path
     else
       render :new
-   end
+    end
+  end
   
-   private
+  private
 
-   def user_params
+  def user_params
      params.require(:user).permit(:first_name,:first_name,:first_furigana,:family_furigana,:email,:nickname,:birth,:password )
-   end
+  end
 
 
 end
