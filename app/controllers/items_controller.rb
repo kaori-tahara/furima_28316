@@ -26,7 +26,6 @@ class ItemsController < ApplicationController
     @items = @tweet.items.includes(:user)
   end
 
-
   def edit
     @item = Item.find(params[:id])
   end
@@ -44,12 +43,10 @@ class ItemsController < ApplicationController
   private
 
   def item_params
-    params.require(:item).permit(:name, :text,:price, :picture, :category_id, :item_statue_id, :shipping_charge_id, :prefecture_id, :period_until_shipping_id).merge(user_id: current_user.id)
+    params.require(:item).permit(:name, :text, :price, :picture, :category_id, :item_statue_id, :shipping_charge_id, :prefecture_id, :period_until_shipping_id).merge(user_id: current_user.id)
   end
 
   def move_to_index
-    unless user_signed_in?
-      redirect_to action: :index
-    end
+    redirect_to action: :index unless user_signed_in?
   end
 end
