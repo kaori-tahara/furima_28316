@@ -10,8 +10,13 @@ class User < ApplicationRecord
     
      validates :birth, presence: true
      validates :nickname,length: { maximum: 40},presence: true
-     validates :email, presence: true, uniqueness: true, format: { with: /@.+/ }
-    
+
+     with_options presence: true, format: { with: /@.+/ } do
+     validates :email 
+     end
+     
+     validates :email,uniqueness: true
+     
      PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i.freeze
      validates :password, presence: true,length: { minimum: 6}, format:{ with: PASSWORD_REGEX, message: 'には英字と数字の両方を含めて設定してください'}
      validates :password_confirmation, presence: true,length: { minimum: 6}, format:{ with: PASSWORD_REGEX}

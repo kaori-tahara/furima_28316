@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :user do
-    first_name {Faker::Japanese::Name.first_name}
-    family_name {Faker::Japanese::Name.last_name}
+    first_name {Gimei.name.first}
+    family_name {Gimei.name.last}
     first_furigana {Gimei.first.katakana}
     family_furigana {Gimei.last.katakana}
     birth {Faker::Date.birthday}
