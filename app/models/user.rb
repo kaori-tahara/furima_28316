@@ -8,7 +8,26 @@ class User < ApplicationRecord
          has_many :purchases
          has_many :comments
     
-     validates :first_name,:family_name,:first_furigana,:family_furigana,:email,:nickname,:birth,:password,presence: true
-     
+     validates :birth, presence: true
+     validates :nickname,length: { maximum: 40},presence: true
+     validates :email, presence: true, uniqueness: true, format: { with: /@.+/ }
+    
+     PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i.freeze
+     validates :password, presence: true,length: { minimum: 6}, format:{ with: PASSWORD_REGEX, message: 'には英字と数字の両方を含めて設定してください'}
+     validates :password_confirmation, presence: true,length: { minimum: 6}, format:{ with: PASSWORD_REGEX}
 
+     with_options presence: true, format: { with: /\A[ぁ-んァ-ン一-龥]+\z/, message: '全角文字を使用してください' } do
+      validates :first_name
+      validates :family_name
+    end
+
+    with_options presence: true, format: { with: /\A[ァ-ン一]+\z/, message: '全角(カタカナ)を使用してください' } do
+      validates :first_furigana
+      validates :family_furigana
+    end
+
+ 
+
+
+     
 end
