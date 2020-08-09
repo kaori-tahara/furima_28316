@@ -1,10 +1,12 @@
 class Item < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
-  belongs_to_active_hash :category
-  belongs_to_active_hash :item_statue
-  belongs_to_active_hash :shipping_charge
-  belongs_to_active_hash :prefecture
-  belongs_to_active_hash :period_until_shipping
+  with_options belongs_to_active_hash do
+    :category
+    :item_statue
+    :shipping_charge
+    :prefecture
+    :period_until_shipping
+ end
 
   # 空の投稿を保存できないようにする
   validates :name, :text, :picture, :price, :category, :item_statue, :shipping_charge, :prefecture, :period_until_shipping, presence: true
@@ -17,3 +19,5 @@ class Item < ApplicationRecord
   has_many   :comments
   has_one_attached :picture
 end
+
+

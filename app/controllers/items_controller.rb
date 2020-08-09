@@ -1,6 +1,4 @@
 class ItemsController < ApplicationController
-  # before_action :authenticate_user!これを使うと全てのactionの前にログインを指示される
-  # トップページは見せたいので今回は使用しない、もしくは：authenticate user! ,except::indexでも同じ
 
   before_action :move_to_index, except: [:index, :show]
 
