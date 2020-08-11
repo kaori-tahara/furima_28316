@@ -26,7 +26,7 @@ class User < ApplicationRecord
     validates :family_name
   end
 
-  with_options presence: true, format: { with: /\A[ァ-ン一]+\z/, message: '全角(カタカナ)を使用してください' } do
+  with_options presence: true, format: { with: /\A[ァ-ヶー－]+\z/, message: '全角(カタカナ)を使用してください' } do
     validates :first_furigana
     validates :family_furigana
   end
