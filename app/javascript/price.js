@@ -10,3 +10,4 @@ let itemPrice = document.getElementById("item-price");
 })
 }
 window.addEventListener("load",price);
+
