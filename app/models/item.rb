@@ -16,7 +16,7 @@ class Item < ApplicationRecord
     validates :name
     validates :text
     validates :picture
-    validates :price ,numericality: { only_integer: true ,greater_than: 299,less_than: 10000000}
+    validates :price, numericality: { only_integer: true, greater_than: 299, less_than: 10_000_000 }
   end
 
   with_options presence: true, numericality: { greater_than: 1 } do
@@ -26,7 +26,4 @@ class Item < ApplicationRecord
     validates :prefecture_id
     validates :period_until_shipping_id
   end
-
 end
-
-
