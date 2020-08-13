@@ -19,8 +19,7 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @item = Item.new
-    @items = @tweet.items.includes(:user)
+    @item = Item.find(params[:id])
   end
 
   def edit
@@ -28,8 +27,8 @@ class ItemsController < ApplicationController
   end
 
   def update
-    @item = Item.find(item_params[:id])
-    @item.update(item_params[:id])
+    @item = Item.find(params[:id])
+    @item.update(params[:id])
     if @item.save
       redirect_to root_path
     else
@@ -42,10 +41,4 @@ class ItemsController < ApplicationController
   def item_params
     params.require(:item).permit(:name, :text, :price, :picture, :category_id, :item_statue_id, :shipping_charge_id, :prefecture_id, :period_until_shipping_id).merge(user_id: current_user.id)
   end
-
-  # def move_to_index
-  #   unless user_signed_in?
-  #    redirect_to action: :index
-  #   end
-  # end
 end
