@@ -25,8 +25,14 @@ class ItemsController < ApplicationController
     if @item.save
       redirect_to root_path
     else
-      render :update
+      render :edit
     end
+  end
+
+  def destroy
+    @item = Item.find(params[:id])
+    @item.destroy
+    redirect_to root_path
   end
 
   private
