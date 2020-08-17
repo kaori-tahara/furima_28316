@@ -1,5 +1,6 @@
 class TransactionsController < ApplicationController
   before_action :authenticate_user!
+  before_action :unpermitteder
 
   def index
     @item = Item.find(params[:item_id])
@@ -26,7 +27,7 @@ class TransactionsController < ApplicationController
 
   def pay_item
     @item = Item.find(params[:item_id])
-    Payjp.api_key = 'sk_test_896aa3803241d953942ecf6a'# PAY.JPテスト秘密鍵
+    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]# PAY.JPテスト秘密鍵
     Payjp::Charge.create(
       amount: @item.price,  # 商品の値段
       card: params[:token],    # カードトークン
@@ -35,5 +36,12 @@ class TransactionsController < ApplicationController
   end
 
 
+  def unpermitteder
+    if @item_id && current_user.id == present?
+     redirect_to items_path
+    end
+   end
+
+  
 end
 
