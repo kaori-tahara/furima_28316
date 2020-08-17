@@ -9,7 +9,6 @@ class TransactionsController < ApplicationController
     if @user_transaction.valid?
       pay_item
       @user_transaction.save
-    #  @buyer = Purchase.find(params[:purchase_id])
     redirect_to items_path
     else
     redirect_to item_transactions_path

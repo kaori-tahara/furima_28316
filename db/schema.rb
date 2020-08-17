@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 2020_08_14_073548) do
     t.string "name", null: false
     t.text "text", null: false
     t.integer "price", null: false
-    t.bigint "user_id"
+    t.bigint "user_id", null: false
     t.integer "category_id", null: false
     t.integer "item_statue_id", null: false
     t.integer "shipping_charge_id", null: false
