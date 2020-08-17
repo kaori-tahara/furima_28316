@@ -25,10 +25,23 @@ RSpec.describe UserTransaction, type: :model do
         expect(@buy.errors.full_messages).to include("Zip (郵便番号)はハイフンを含めて記載してください")
       end
 
+      it '都道府県がないと保存できない' do
+        @buy.prefecture_id = nil
+        @buy.valid?
+        expect(@buy.errors.full_messages).to include("Prefecture can't be blank")
+      end
+
       it '市区町村の記載がないと保存できない' do
         @buy.city = ""
         @buy.valid?
         expect(@buy.errors.full_messages).to include("City can't be blank")
+      end
+
+      it '市区町村は全角でないと保存できない' do
+        @buy.city = "ﾌｸｵｶｼ"
+        @buy.valid?
+        binding.pry
+        expect(@buy.errors.full_messages).to include("Address は全角で記載してください")
       end
 
       it '番地がないと保存できない' do
@@ -49,11 +62,7 @@ RSpec.describe UserTransaction, type: :model do
         expect(@buy.errors.full_messages).to include("Phone number is too long (maximum is 11 characters)")
       end
 
-      it '都道府県がないと保存できない' do
-        @buy.prefecture_id = nil
-        @buy.valid?
-        expect(@buy.errors.full_messages).to include("Prefecture can't be blank")
-      end
+      
 
     end
   end
