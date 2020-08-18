@@ -70,7 +70,7 @@ RSpec.describe UserTransaction, type: :model do
       end      
       
 
-      it 'takenが空だと保存できない' do
+      it 'tokenが空だと保存できない' do
         @buy.token = nil
         @buy.valid?
         expect(@buy.errors.full_messages).to include("Token can't be blank")
