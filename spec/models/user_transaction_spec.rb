@@ -26,31 +26,39 @@ RSpec.describe UserTransaction, type: :model do
 
       it '郵便番号がハイフンを含んでいないと保存できない' do
         @buy.zip = "8191214"
-        @buy.valid?
+        @buy.valid? 
         expect(@buy.errors.full_messages).to include("Zip (郵便番号)はハイフンを含めて記載してください")
       end
 
       it '都道府県がないと保存できない' do
         @buy.prefecture_id = nil
         @buy.valid?
+        binding.pry
         expect(@buy.errors.full_messages).to include("Prefecture can't be blank")
       end
 
+      it '都道府県(id)に１が入っている場合は保存できない' do
+        @buy.prefecture_id = "1"
+        @buy.valid?
+        expect(@buy.errors.full_messages).to include("Prefecture must be greater than 1")
+      end
+
+
       it '市区町村の記載がないと保存できない' do
-        @buy.city = ""
+        @buy.city = nil
         @buy.valid?
         expect(@buy.errors.full_messages).to include("City can't be blank")
       end
 
 
       it '番地がないと保存できない' do
-        @buy.address = ""
+        @buy.address = nil
         @buy.valid?
         expect(@buy.errors.full_messages).to include("Address can't be blank")
       end
 
       it '電話番号がないと保存できない' do
-        @buy.phone_number = ""
+        @buy.phone_number = nil
         @buy.valid?
         expect(@buy.errors.full_messages).to include("Phone number can't be blank")
       end
@@ -67,9 +75,6 @@ RSpec.describe UserTransaction, type: :model do
         @buy.valid?
         expect(@buy.errors.full_messages).to include("Token can't be blank")
       end
-
-      
-
     end
   end
 end
