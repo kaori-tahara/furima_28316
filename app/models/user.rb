@@ -8,7 +8,6 @@ class User < ApplicationRecord
   has_many :purchases
   has_many :comments
 
-
   validates :birth, presence: true
   validates :nickname, length: { maximum: 40 }, presence: true
 
@@ -30,5 +29,4 @@ class User < ApplicationRecord
     validates :first_furigana
     validates :family_furigana
   end
-  
 end

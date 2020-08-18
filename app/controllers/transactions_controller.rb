@@ -17,32 +17,24 @@ class TransactionsController < ApplicationController
     end
   end
 
-
   private
 
   def purchase_params
-    params.permit(:zip,:city,:address,:building_name,:phone_number,:prefecture_id,:item_id).merge(user_id: current_user.id)
+    params.permit(:zip, :city, :address, :building_name, :phone_number, :prefecture_id, :item_id).merge(user_id: current_user.id)
   end
-   
 
   def pay_item
     @item = Item.find(params[:item_id])
-    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
+    Payjp.api_key = ENV['PAYJP_SECRET_KEY']
     Payjp::Charge.create(
-      amount: @item.price,  
-      card: params[:token],    
-      currency:'jpy'                 
-    ) 
+      amount: @item.price,
+      card: params[:token],
+      currency: 'jpy'
+    )
   end
-
 
   def unpermiteder
     @item = Item.find(params[:item_id])
-    if @item.user_id == current_user.id 
-      redirect_to items_path
-    end
+    redirect_to items_path if @item.user_id == current_user.id
   end
-
-  
 end
-

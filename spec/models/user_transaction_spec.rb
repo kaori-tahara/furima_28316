@@ -15,7 +15,6 @@ RSpec.describe UserTransaction, type: :model do
         expect(@buy).to be_valid
       end
     end
-  
 
     context 'itemの購入ができない場合（保存できない場合）' do
       it '郵便番号がないと保存できない' do
@@ -25,9 +24,9 @@ RSpec.describe UserTransaction, type: :model do
       end
 
       it '郵便番号がハイフンを含んでいないと保存できない' do
-        @buy.zip = "8191214"
-        @buy.valid? 
-        expect(@buy.errors.full_messages).to include("Zip (郵便番号)はハイフンを含めて記載してください")
+        @buy.zip = '8191214'
+        @buy.valid?
+        expect(@buy.errors.full_messages).to include('Zip (郵便番号)はハイフンを含めて記載してください')
       end
 
       it '都道府県がないと保存できない' do
@@ -37,18 +36,16 @@ RSpec.describe UserTransaction, type: :model do
       end
 
       it '都道府県(id)に１が入っている場合は保存できない' do
-        @buy.prefecture_id = "1"
+        @buy.prefecture_id = '1'
         @buy.valid?
-        expect(@buy.errors.full_messages).to include("Prefecture must be greater than 1")
+        expect(@buy.errors.full_messages).to include('Prefecture must be greater than 1')
       end
-
 
       it '市区町村の記載がないと保存できない' do
         @buy.city = nil
         @buy.valid?
         expect(@buy.errors.full_messages).to include("City can't be blank")
       end
-
 
       it '番地がないと保存できない' do
         @buy.address = nil
@@ -63,12 +60,11 @@ RSpec.describe UserTransaction, type: :model do
       end
 
       it '電話番号は11桁でないと保存できない' do
-        @buy.phone_number = "1234567891111"
-        @buy.valid? 
+        @buy.phone_number = '1234567891111'
+        @buy.valid?
         binding.pry
-        expect(@buy.errors.full_messages).to include("Phone number is the wrong length (should be 11 characters)")
-      end      
-      
+        expect(@buy.errors.full_messages).to include('Phone number is the wrong length (should be 11 characters)')
+      end
 
       it 'tokenが空だと保存できない' do
         @buy.token = nil
@@ -78,4 +74,3 @@ RSpec.describe UserTransaction, type: :model do
     end
   end
 end
-
