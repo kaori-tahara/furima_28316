@@ -36,5 +36,6 @@ class TransactionsController < ApplicationController
   def unpermiteder
     @item = Item.find(params[:item_id])
     redirect_to items_path if @item.user_id == current_user.id
+    redirect_to items_path  if @item.purchase.present?
   end
 end
