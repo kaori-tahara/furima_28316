@@ -66,11 +66,7 @@ RSpec.describe UserTransaction, type: :model do
         expect(@buy.errors.full_messages).to include('Phone number is the wrong length (should be 11 characters)')
       end
 
-      it 'tokenが空だと保存できない' do
-        @buy.token = nil
-        @buy.valid?
-        expect(@buy.errors.full_messages).to include("Token can't be blank")
-      end
+      
     end
   end
 end

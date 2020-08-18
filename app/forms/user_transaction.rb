@@ -1,6 +1,6 @@
 class UserTransaction
   include ActiveModel::Model
-  attr_accessor :zip, :city, :address, :building_name, :phone_number, :prefecture_id, :user_id, :item_id, :token
+  attr_accessor :zip, :city, :address, :building_name, :phone_number, :prefecture_id, :user_id, :item_id
 
   # shippingaddressのバリデーション
   with_options presence: true do
@@ -8,7 +8,6 @@ class UserTransaction
     validates :city
     validates :address
     validates :phone_number, length: { is: 11 }, numericality: { only_integer: true }
-    validates :token
   end
 
   with_options presence: true, numericality: { greater_than: 1 } do
