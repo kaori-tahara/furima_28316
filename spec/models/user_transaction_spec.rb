@@ -33,7 +33,6 @@ RSpec.describe UserTransaction, type: :model do
       it '都道府県がないと保存できない' do
         @buy.prefecture_id = nil
         @buy.valid?
-        binding.pry
         expect(@buy.errors.full_messages).to include("Prefecture can't be blank")
       end
 
@@ -66,7 +65,8 @@ RSpec.describe UserTransaction, type: :model do
       it '電話番号は11桁でないと保存できない' do
         @buy.phone_number = "1234567891111"
         @buy.valid? 
-        expect(@buy.errors.full_messages).to include("Phone number is too long (maximum is 11 characters)")
+        binding.pry
+        expect(@buy.errors.full_messages).to include("Phone number is the wrong length (should be 11 characters)")
       end      
       
 
