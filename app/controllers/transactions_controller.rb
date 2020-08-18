@@ -1,6 +1,6 @@
 class TransactionsController < ApplicationController
   before_action :authenticate_user!
-  before_action :unpermitteder
+  before_action :unpermiteder
 
   def index
     @item = Item.find(params[:item_id])
@@ -11,9 +11,9 @@ class TransactionsController < ApplicationController
     if @user_transaction.valid?
       pay_item
       @user_transaction.save
-    redirect_to items_path
+      redirect_to items_path
     else
-    redirect_to item_transactions_path
+      redirect_to item_transactions_path
     end
   end
 
@@ -27,19 +27,19 @@ class TransactionsController < ApplicationController
 
   def pay_item
     @item = Item.find(params[:item_id])
-    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]# PAY.JPテスト秘密鍵
+    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
     Payjp::Charge.create(
-      amount: @item.price,  # 商品の値段
-      card: params[:token],    # カードトークン
-      currency:'jpy'                 # 通貨の種類
+      amount: @item.price,  
+      card: params[:token],    
+      currency:'jpy'                 
     ) 
   end
 
 
-  def unpermitteder
-      @item = Item.find(params[:item_id])
+  def unpermiteder
+    @item = Item.find(params[:item_id])
     if @item.user_id == current_user.id 
-     redirect_to items_path
+      redirect_to items_path
     end
    end
 

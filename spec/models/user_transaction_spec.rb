@@ -2,7 +2,12 @@ require 'rails_helper'
 RSpec.describe UserTransaction, type: :model do
   describe '#create' do
     before do
-      @buy = FactoryBot.build(:user_transaction)
+      @seller = FactoryBot.build(:user)
+      @buyer = FactoryBot.build(:user)
+      @item = FactoryBot.build(:item, user_id: @seller.id)
+      @item.picture = fixture_file_upload('public/test.mages.jpeg')
+      @item.save
+      @buy = FactoryBot.build(:user_transaction, user_id: @buyer.id)
     end
 
     context 'itemの購入ができる場合' do
@@ -37,12 +42,6 @@ RSpec.describe UserTransaction, type: :model do
         expect(@buy.errors.full_messages).to include("City can't be blank")
       end
 
-      it '市区町村は全角でないと保存できない' do
-        @buy.city = "ﾌｸｵｶｼ"
-        @buy.valid?
-        binding.pry
-        expect(@buy.errors.full_messages).to include("Address は全角で記載してください")
-      end
 
       it '番地がないと保存できない' do
         @buy.address = ""
@@ -60,6 +59,13 @@ RSpec.describe UserTransaction, type: :model do
         @buy.phone_number = "1234567891111"
         @buy.valid? 
         expect(@buy.errors.full_messages).to include("Phone number is too long (maximum is 11 characters)")
+      end      
+      
+
+      it 'takenが空だと保存できない' do
+        @buy.token = nil
+        @buy.valid?
+        expect(@buy.errors.full_messages).to include("Token can't be blank")
       end
 
       
@@ -67,3 +73,4 @@ RSpec.describe UserTransaction, type: :model do
     end
   end
 end
+
