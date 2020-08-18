@@ -18,5 +18,5 @@ class UserTransaction
   def save
     ShippingAddress.create(zip: zip, city: city, address: address, building_name: building_name, phone_number: phone_number, prefecture_id: prefecture_id, user_id: user_id, item_id: item_id)
     Purchase.create(user_id: user_id, item_id: item_id)
- end
+  end
 end

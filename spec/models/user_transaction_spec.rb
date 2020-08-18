@@ -62,11 +62,8 @@ RSpec.describe UserTransaction, type: :model do
       it '電話番号は11桁でないと保存できない' do
         @buy.phone_number = '1234567891111'
         @buy.valid?
-        binding.pry
         expect(@buy.errors.full_messages).to include('Phone number is the wrong length (should be 11 characters)')
       end
-
-      
     end
   end
 end
