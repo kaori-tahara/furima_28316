@@ -4,9 +4,7 @@ Rails.application.routes.draw do
   resources :items do
    resources :transactions, only: [:index, :create]
   end
-  resources :users, only: [:show]
-
-
-  
+  resources :users, only: [:new, :create]
+ 
 
 end
